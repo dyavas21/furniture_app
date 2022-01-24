@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:furniture_app/theme.dart';
 import 'package:furniture_app/widgets/unboarding_item.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends StatefulWidget {
+  @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
+  int currentIndex = 0;
+  CarouselController controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +43,16 @@ class OnboardingPage extends StatelessWidget {
                 height: double.infinity,
                 viewportFraction: 1,
                 enableInfiniteScroll: false,
+                initialPage: currentIndex,
+                onPageChanged: (index, _) {
+                  setState(
+                    () {
+                      currentIndex = index;
+                    },
+                  );
+                },
               ),
+              carouselController: controller,
             ),
           ),
           Container(
@@ -46,7 +63,9 @@ class OnboardingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.animateToPage(2);
+                  },
                   child: Text(
                     'SKIP',
                     style: blackTextStyle.copyWith(
@@ -61,7 +80,7 @@ class OnboardingPage extends StatelessWidget {
                       height: 10,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kBlackColor,
+                        color: currentIndex == 0 ? kBlackColor : kLineDarkColor,
                       ),
                     ),
                     SizedBox(
@@ -72,7 +91,7 @@ class OnboardingPage extends StatelessWidget {
                       height: 10,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kLineDarkColor,
+                        color: currentIndex == 1 ? kBlackColor : kLineDarkColor,
                       ),
                     ),
                     SizedBox(
@@ -83,13 +102,20 @@ class OnboardingPage extends StatelessWidget {
                       height: 10,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kLineDarkColor,
+                        color: currentIndex == 2 ? kBlackColor : kLineDarkColor,
                       ),
                     ),
                   ],
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (currentIndex == 2) {
+                      Navigator.pushNamed(context, '/sign-in');
+                    } else {
+                      controller.nextPage();
+                    }
+                    controller.nextPage();
+                  },
                   child: Text(
                     'NEXT',
                     style: blackTextStyle.copyWith(
