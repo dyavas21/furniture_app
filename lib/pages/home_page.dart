@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_app/theme.dart';
 import 'package:furniture_app/widgets/home_category_item.dart';
+import 'package:furniture_app/widgets/home_popular_item.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -83,29 +84,34 @@ class _HomePageState extends State<HomePage> {
               ),
 
               // NOTE : SEARCHBAR
-              Container(
-                margin: EdgeInsets.only(top: 30, left: 24, right: 24),
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: kWhiteColor,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Search Furniture',
-                      style: greyTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semibold,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/search');
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 30, left: 24, right: 24),
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Search Furniture',
+                        style: greyTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: semibold,
+                        ),
                       ),
-                    ),
-                    Image.asset(
-                      'assets/icon_search.png',
-                      width: 24,
-                      color: kGreyColor,
-                    ),
-                  ],
+                      Image.asset(
+                        'assets/icon_search.png',
+                        width: 24,
+                        color: kGreyColor,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               // NOTE : CATEGORY TITLE
@@ -199,7 +205,80 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-              )
+              ),
+              // NOTE : POPULAR SECTION
+              Container(
+                margin: EdgeInsets.only(top: 24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(
+                      40,
+                    ),
+                  ),
+                  color: kWhiteColor,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: 24,
+                        left: 24,
+                        right: 24,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Popular',
+                            style: blackTextStyle.copyWith(
+                              fontSize: 24,
+                              fontWeight: semibold,
+                            ),
+                          ),
+                          Text(
+                            'Show All',
+                            style: blackTextStyle,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 310,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            HomePopularItem(
+                              title: 'Poan Chair',
+                              imageUrl: 'assets/image_product_popular1.png',
+                              price: 34,
+                              isWishlist: true,
+                            ),
+                            HomePopularItem(
+                              title: 'Poan Chair',
+                              imageUrl: 'assets/image_product_popular2.png',
+                              price: 20,
+                              isWishlist: false,
+                            ),
+                            HomePopularItem(
+                              title: 'Poan Chair',
+                              imageUrl: 'assets/image_product_popular3.png',
+                              price: 42,
+                              isWishlist: false,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ),
             ],
           )
         ],
