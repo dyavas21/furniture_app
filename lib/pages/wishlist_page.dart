@@ -67,6 +67,15 @@ class _WishlistPageState extends State<WishlistPage> {
             showSelectedLabels: false,
             showUnselectedLabels: false,
             backgroundColor: kWhiteColor,
+            onTap: (value) {
+              if (value == 0) {
+                Navigator.pushNamed(context, '/home');
+              } else if (value == 1) {
+                Navigator.pushNamed(context, '/wishlist');
+              } else if (value == 2) {
+                Navigator.pushNamed(context, '/profile');
+              }
+            },
             items: [
               BottomNavigationBarItem(
                 icon: Image.asset(
