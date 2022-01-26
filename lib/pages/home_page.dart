@@ -23,9 +23,7 @@ class _HomePageState extends State<HomePage> {
           showUnselectedLabels: false,
           backgroundColor: kWhiteColor,
           onTap: (value) {
-            if (value == 0) {
-              Navigator.pushNamed(context, '/home');
-            } else if (value == 1) {
+            if (value == 1) {
               Navigator.pushNamed(context, '/wishlist');
             } else if (value == 2) {
               Navigator.pushNamed(context, '/profile');
