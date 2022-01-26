@@ -6,6 +6,7 @@ import 'package:furniture_app/pages/search_page.dart';
 import 'package:furniture_app/pages/search_result_page.dart';
 import 'package:furniture_app/pages/sig_in_page.dart';
 import 'package:furniture_app/pages/splash_page.dart';
+import 'package:furniture_app/pages/wishlist_page.dart';
 import 'package:furniture_app/theme.dart';
 
 void main() => runApp(MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/search': (context) => SearchPage(),
         '/search-result': (context) => SearchResultPage(),
         '/category': (context) => CategoryPage(),
+        '/wishlist': (context) => WishlistPage(),
       },
     );
   }
