@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/pages/category_page.dart';
 import 'package:furniture_app/pages/home_page.dart';
 import 'package:furniture_app/pages/onboarding_page.dart';
 import 'package:furniture_app/pages/search_page.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/search': (context) => SearchPage(),
         '/search-result': (context) => SearchResultPage(),
+        '/category': (context) => CategoryPage(),
       },
     );
   }
